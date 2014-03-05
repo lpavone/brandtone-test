@@ -1,0 +1,13 @@
+<web-app id="brandtoneProject-1.0-SNAPSHOT">
+    <jsp fast-jstl="false"/>
+
+    <!--database>
+        <jndi-name>jdbc/appfuse</jndi-name>
+        <driver type="org.h2.Driver">
+            <url>jdbc:h2:/tmp/brandtoneProject;MVCC=TRUE</url>
+            <user>sa</user>
+            <password></password>
+        </driver>
+    </database-->
+</web-app>
+
