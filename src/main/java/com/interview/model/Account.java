@@ -12,28 +12,30 @@ import java.util.Random;
  *
  * @author Leonardo
  */
-public class Account {
+public class Account {    
     
-    private static BigInteger accountNumberSequence;
+    private static enum type { CHECKING_ACCOUNT, SAVING_ACCOUNT, CERTIFICATE_OF_DEPOSIT,
+                MONEY_MARKET_ACCOUNT, INDIVIDUAL_RETIREMENT_ACCOUNTS };
     
     private final BigInteger accountNumber;
     private String name;    
     private String address;
     private String phoneNumber;
     private BigDecimal balance;
+    private String accountType;
     
-    /**
-     * A random number to initialize, it represent the current quantity of bank accounts created at any moment.
-     */
-    static{
-        accountNumberSequence = new BigInteger(40, new Random());
-    }
-
     
     public Account(BigInteger accountNumber){
         this.accountNumber = accountNumber;
     }
-        
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
     
     public BigInteger getAccountNumber() {
         return accountNumber;
@@ -70,7 +72,33 @@ public class Account {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + (this.accountNumber != null ? this.accountNumber.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Account other = (Account) obj;
+        if (this.accountNumber != other.accountNumber && (this.accountNumber == null || !this.accountNumber.equals(other.accountNumber))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "accountNumber=" + accountNumber + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", balance=" + balance + ", accountType=" + accountType + '}';
+    }
     
     
 }
