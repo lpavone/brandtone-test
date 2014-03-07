@@ -6,7 +6,7 @@
 package com.interview.service;
 
 import com.interview.exception.AccountException;
-import java.math.BigInteger;
+import com.interview.model.Address;
 
 /**
  *
@@ -17,11 +17,14 @@ public interface AccountManager {
     /**
      * Create a new account.
      * 
-     * @param accountNumber Number of the account.
+     * @param name Person's name
+     * @param address Person's address
+     * @param phoneNumber Person's phone
+     * @param accountType Type of account
      * 
      * @throws AccountException 
      */
-    public void createAccount(BigInteger accountNumber) throws AccountException;
+    public void createAccount(String name, Address address, String phoneNumber) throws AccountException;
     
     
 }

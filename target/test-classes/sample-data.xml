@@ -119,4 +119,67 @@
             <value description="role_id">-2</value>
         </row>
     </table>
+    
+    <table name="account_">
+        <column>id</column>
+        <column>name</column>
+        <column>account_number</column>
+        <column>phone_number</column>
+        <column>balance</column>
+        <column>address</column>
+        <row>
+            <value description="id">-1</value>
+            <value description="name">Alexander Orlov</value>
+            <value description="account_number">99898755</value>
+            <value description="phone_number">0872349588</value>
+            <value description="balance">200</value>
+            <value description="address"></value>
+        </row>
+        <row>
+            <value description="id">-2</value>
+            <value description="name">Charlotte Walden</value>
+            <value description="account_number">92344755</value>
+            <value description="phone_number">0871111188</value>
+            <value description="balance">130000</value>
+            <value description="address"></value>
+        </row>
+        <row>
+            <value description="id">-3</value>
+            <value description="name">Stephen Walden</value>
+            <value description="account_number">99896611</value>
+            <value description="phone_number">087232233</value>
+            <value description="balance">2200</value>
+            <value description="address"></value>
+        </row>
+    </table>
+    
+    <table name="transaction_">
+        <column>id</column>
+        <column>transactionID</column>
+        <column>date_</column>
+        <column>amount</column>
+        <column>account_number_to</column>
+        <column>account_number_from</column>
+        <column>transaction_type</column>
+        <row>
+            <value>-1</value>
+            <value>12345678</value>
+            <value>2013-11-11</value>
+            <value>100</value>
+            <value>99896611</value>
+            <value>92344755</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>-2</value>
+            <value>12345999</value>
+            <value>2013-11-11</value>
+            <value>200</value>
+            <value>99896611</value>
+            <value>92344755</value>
+            <value>1</value>
+        </row>
+    </table>
+    
+   
 </dataset>

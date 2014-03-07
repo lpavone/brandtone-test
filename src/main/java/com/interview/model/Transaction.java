@@ -6,28 +6,42 @@
 package com.interview.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import org.hibernate.search.annotations.Indexed;
 
 /**
  * Represent a transaction account (deposit, transfer, account created)
  * 
  * @author Leonardo Pavone
  */
-public class Transaction {
+@Entity
+@Table(name = "transaction_")
+@Indexed
+@NamedQueries({
+        @NamedQuery(name = "Transaction.findAllOrderedByDate",
+                query = "select t from Transaction t where t.accountNumberFrom = :accountNumber or t.accountNumberTo = :accountNumber order by t.date desc"),
+})
+public class Transaction extends IdentityEntity{
     
-    private static BigInteger transactionNumberSequence;
-
-    private static enum type { LODGEMENT, TRANSFER };
-    private BigInteger transactionID;
+    public static enum Type { LODGEMENT, TRANSFER };
+    private Long transactionID;    
     private Date date;
-    private final String transactionType;
+    private Type transactionType;
     private BigDecimal amount;
-    private BigInteger accountNumberFrom;
-    private BigInteger accountNumberTo;
+    private Long accountNumberFrom;
+    private Long accountNumberTo;
+
+    public Transaction() {
+    }
     
-    public Transaction( BigInteger transactionID, Date date, String transactionType,
-            BigDecimal amount, BigInteger accountNumberFrom, BigInteger accountNumberTo){
+    public Transaction( Long transactionID, Date date, Type transactionType,
+            BigDecimal amount, Long accountNumberFrom, Long accountNumberTo){
         
         this.transactionID = transactionID;
         this.date = date;
@@ -37,22 +51,21 @@ public class Transaction {
         this.accountNumberTo = accountNumberTo;
     }
 
-    public static BigInteger getTransactionNumberSequence() {
-        return transactionNumberSequence;
-    }
-
-    public static void setTransactionNumberSequence(BigInteger transactionNumberSequence) {
-        Transaction.transactionNumberSequence = transactionNumberSequence;
-    }
-
-    public BigInteger getTransactionID() {
+    @Column(name="transactionID")
+    public Long getTransactionID() {
         return transactionID;
     }
 
-    public void setTransactionID(BigInteger transactionID) {
+    public void setTransactionID(Long transactionID) {
         this.transactionID = transactionID;
     }
-
+    
+    /**
+     * Date of transaction.
+     * @return
+     */
+    @Column(name = "date_")
+    @Temporal(javax.persistence.TemporalType.DATE)
     public Date getDate() {
         return date;
     }
@@ -61,6 +74,7 @@ public class Transaction {
         this.date = date;
     }
 
+    @Column(name="amount")
     public BigDecimal getAmount() {
         return amount;
     }
@@ -69,21 +83,34 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public BigInteger getAccountNumberFrom() {
+    @Column(name="account_number_from")
+    public Long getAccountNumberFrom() {
         return accountNumberFrom;
     }
 
-    public void setAccountNumberFrom(BigInteger accountNumberFrom) {
+    public void setAccountNumberFrom(Long accountNumberFrom) {
         this.accountNumberFrom = accountNumberFrom;
     }
 
-    public BigInteger getAccountNumberTo() {
+    @Column(name="account_number_to")
+    public Long getAccountNumberTo() {
         return accountNumberTo;
     }
 
-    public void setAccountNumberTo(BigInteger accountNumberTo) {
+    public void setAccountNumberTo(Long accountNumberTo) {
         this.accountNumberTo = accountNumberTo;
     }
+
+    @Column(name = "transaction_type")
+    public Type getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(Type transactionType) {
+        this.transactionType = transactionType;
+    }
+    
+    
 
     @Override
     public int hashCode() {

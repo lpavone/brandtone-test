@@ -13,5 +13,13 @@
 
     <!-- Add new DAOs here -->
 
-    <!-- Add new Managers here -->
+    <!-- MANAGERS -->
+    <bean id="accountManager" class="com.interview.service.impl.AccountManagerImpl">
+        <constructor-arg ref="transactionDao"/>
+    </bean> 
+
+    <bean id="transactionAccountManager" class="com.interview.service.impl.TransactionAccountManagerImpl">
+        <constructor-arg ref="transactionDao"/>
+    </bean> 
+
 </beans>

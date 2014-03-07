@@ -5,42 +5,62 @@
 package com.interview.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Random;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 /**
- *
+ * Account class.
+ * 
+ * 
  * @author Leonardo
  */
-public class Account {    
+@Entity
+@Table(name = "account_")
+@Indexed
+@NamedQueries({
+        @NamedQuery(name = "Account.findByAccountNumber",
+                query = "select a from Account a where a.accountNumber = :accountNumber "),
+})
+public class Account extends IdentityEntity{    
     
-    private static enum type { CHECKING_ACCOUNT, SAVING_ACCOUNT, CERTIFICATE_OF_DEPOSIT,
-                MONEY_MARKET_ACCOUNT, INDIVIDUAL_RETIREMENT_ACCOUNTS };
     
-    private final BigInteger accountNumber;
+    private Long accountNumber;
     private String name;    
-    private String address;
+    private Address address;
     private String phoneNumber;
     private BigDecimal balance;
-    private String accountType;
     
+    public Account() {
+    }
+
     
-    public Account(BigInteger accountNumber){
+    public Account(Long accountNumber){
         this.accountNumber = accountNumber;
+        /**
+         * Account is created with $ 0 
+         */
+        this.balance = BigDecimal.ZERO;
+
     }
 
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
     
-    public BigInteger getAccountNumber() {
+    @Column(name="account_number", unique = true)
+    public Long getAccountNumber() {
         return accountNumber;
     }
+
+    public void setAccountNumber(Long accountNumber) {
+        //this.accountNumber = accountNumber;
+    }
     
+    
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -49,14 +69,17 @@ public class Account {
         this.name = name;
     }
 
-    public String getAddress() {
+    @Embedded
+    @IndexedEmbedded
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
+    @Column(name="phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -65,12 +88,13 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public BigDecimal getBalance() {
+    @Column(name="balance")
+    public synchronized BigDecimal getBalance() {
         return balance;
     }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    
+    public void setBalance(BigDecimal balance){
+        //this.balance = balance;
     }
 
     @Override
@@ -97,8 +121,19 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "accountNumber=" + accountNumber + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", balance=" + balance + ", accountType=" + accountType + '}';
+        return "Account{" + "accountNumber=" + accountNumber + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + ", balance=" + balance + '}';
     }
     
+    /**
+     * Sync block to access the balance
+     */
+    public synchronized void deposit(BigDecimal amount){
+        getBalance().add(amount);
+        
+    }
+    
+    public synchronized void withdraw(BigDecimal amount){
+        getBalance().subtract(amount);
+    }
     
 }

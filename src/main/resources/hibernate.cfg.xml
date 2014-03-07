@@ -8,5 +8,7 @@
     <session-factory>
         <mapping class="com.interview.model.User"/>
         <mapping class="com.interview.model.Role"/>
+        <mapping class="com.interview.model.Transaction"/>
+        <mapping class="com.interview.model.Account"/>
     </session-factory>
 </hibernate-configuration>
