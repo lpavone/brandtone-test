@@ -108,7 +108,15 @@
     </navigation-rule>
 
     <!-- Add additional rules here -->
-
+    <navigation-rule>
+        <from-view-id>/bank/transactions.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/bank/transactions.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
     <managed-bean>
         <managed-bean-name>basePage</managed-bean-name>
         <managed-bean-class>com.interview.webapp.action.BasePage</managed-bean-class>

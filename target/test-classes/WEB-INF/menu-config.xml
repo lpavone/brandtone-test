@@ -12,6 +12,13 @@
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
             <Item name="FileUpload" title="menu.selectFile" page="/selectFile"/>
         </Menu>
+        <Menu name="BankMenu" title="menu.bank" description="Bank Menu" roles="ROLE_ADMIN" width="120" >
+            <Item name="ViewTransactions" title="menu.transactions" page="/bank/transactions"/>
+            <Item name="MakeTransfer" title="menu.transfer" page="/bank/transfer"/>
+            <Item name="MakeLodgement" title="menu.lodgement" page="/bank/lodgement"/>
+            <Item name="CreateAccount" title="menu.create.account" page="/bank/createAccount"/>
+            <Item name="Accounts" title="menu.created.account" page="/bank/createdAccounts"/>
+        </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
 </MenuConfig>

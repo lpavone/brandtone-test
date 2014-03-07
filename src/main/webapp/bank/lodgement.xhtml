@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/layouts/default.xhtml">
+    
+    <!--TO SPEED UP CODING ALL THE TEXT WAS HARDCODED IN THE PAGE (Leonardo)-->
+
+    <ui:define name="title">Make a deposit</ui:define>
+    <ui:param name="menu" value="BankMenu"/>
+
+    <ui:define name="body">
+        <c:set var="delObject" value="#{text['userList.user']}"/>
+
+        <div class="col-sm-2">
+            <h2>Make a deposit</h2>
+        </div>
+        <div class="col-sm-7">
+
+            <h:form id="accountForm" styleClass="well" >
+
+
+                <div class="form-group">
+                    <h:outputLabel styleClass="control-label" for="accountNumber" value="Account Number"/>
+                    <h:inputText styleClass="form-control" value="#{transactionForm.accountNumber}" id="accountNumber" required="true"/>
+                    <p:message for="accountNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel styleClass="control-label" for="amount" value="Amount (euros)"/>
+                    <h:inputText styleClass="form-control" value="#{transactionForm.amount}" id="amount" required="true"/>
+                    <p:message for="amount"/>
+                </div>
+                
+
+                <div class="form-group form-actions">
+                    <h:commandButton value="Deposit" action="#{transactionForm.deposit}" styleClass="btn btn-primary"/>
+
+                </div>
+            </h:form>
+        </div>
+</ui:define>
+</ui:composition>
+</html>

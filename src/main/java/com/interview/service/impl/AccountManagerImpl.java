@@ -11,6 +11,9 @@ import com.interview.model.Account;
 import com.interview.model.Address;
 import com.interview.sequences.SequenceGenerator;
 import com.interview.service.AccountManager;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,27 +32,31 @@ public class AccountManagerImpl extends GenericManagerImpl<Account, Long> implem
         this.accountDao = accountDao;
     }
 
-//    @Autowired
-//    public GenericDao<Account, Long> getAccountDao() {
-//        return accountDao;
-//    }
-//
-//    public void setAccountDao(GenericDao<Account, Long> accountDao) {
-//        this.accountDao = accountDao;
-//    }
-
     @Override
-    public void createAccount(String name, Address address, String phoneNumber) throws AccountException {
+    public Account createAccount(String name, String address, String phoneNumber) throws AccountException {
         
-        Account newAccount = new Account( 
-                SequenceGenerator.getInstance().getNextValueAccountNumber() );
+        Long accountNumber = SequenceGenerator.getInstance().getNextValueAccountNumber();
+        Account newAccount = new Account();
+        newAccount.setAccountNumber(accountNumber);
+        newAccount.setBalance(BigDecimal.ZERO);
         newAccount.setName(name);
         newAccount.setAddress(address);
         newAccount.setPhoneNumber(phoneNumber);
+                
+        return accountDao.save(newAccount); 
         
-        
-        accountDao.save(newAccount);
     }
+
+    @Override
+    public Account findByAccountNumber(Long accountNumber) throws AccountException {
+        
+        Map<String, Object> params = new HashMap<>();
+        params.put("accountNumber", accountNumber);
+        
+        return accountDao.findByNamedQuery("Account.findByAccountNumber", params).get(0);//Simplified, but not good practice
+    }
+    
+    
 
 
 }

@@ -4,8 +4,6 @@
  */
 package com.interview.sequences;
 
-import java.util.Random;
-
 /**
  * Singleton class to keep a sequence of account numbers and 
  * transaction IDs without duplicate values.
@@ -25,8 +23,8 @@ public class SequenceGenerator {
      * 
      */
     static {
-        accountNumberCurrentValue = new Long( new Random().nextLong());
-        transactionIDCurrentValue = new Long( new Random().nextLong());
+        accountNumberCurrentValue = new Long( 99898755);
+        transactionIDCurrentValue = new Long( 22345999);
     }
 
     private SequenceGenerator() {}

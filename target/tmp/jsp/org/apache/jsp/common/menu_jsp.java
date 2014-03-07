@@ -205,14 +205,7 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
         if (_jspx_meth_menu_displayMenu_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_menu_useMenuDisplayer_0, _jspx_page_context))
           return true;
         out.write("\n");
-        out.write("    ");
-        if (_jspx_meth_menu_displayMenu_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_menu_useMenuDisplayer_0, _jspx_page_context))
-          return true;
-        out.write("\n");
-        out.write("    ");
-        if (_jspx_meth_menu_displayMenu_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_menu_useMenuDisplayer_0, _jspx_page_context))
-          return true;
-        out.write("\n");
+        out.write("    \n");
         out.write("</ul>\n");
         out.write("</div>\n");
         int evalDoAfterBody = _jspx_th_menu_useMenuDisplayer_0.doAfterBody();
@@ -327,49 +320,13 @@ public final class menu_jsp extends org.apache.jasper.runtime.HttpJspBase
     net.sf.navigator.taglib.el.DisplayMenuTag _jspx_th_menu_displayMenu_1 = (net.sf.navigator.taglib.el.DisplayMenuTag) _jspx_tagPool_menu_displayMenu_name_nobody.get(net.sf.navigator.taglib.el.DisplayMenuTag.class);
     _jspx_th_menu_displayMenu_1.setPageContext(_jspx_page_context);
     _jspx_th_menu_displayMenu_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_menu_useMenuDisplayer_0);
-    _jspx_th_menu_displayMenu_1.setName("UserMenu");
+    _jspx_th_menu_displayMenu_1.setName("BankMenu");
     int _jspx_eval_menu_displayMenu_1 = _jspx_th_menu_displayMenu_1.doStartTag();
     if (_jspx_th_menu_displayMenu_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_1);
       return true;
     }
     _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_1);
-    return false;
-  }
-
-  private boolean _jspx_meth_menu_displayMenu_2(javax.servlet.jsp.tagext.JspTag _jspx_th_menu_useMenuDisplayer_0, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  menu:displayMenu
-    net.sf.navigator.taglib.el.DisplayMenuTag _jspx_th_menu_displayMenu_2 = (net.sf.navigator.taglib.el.DisplayMenuTag) _jspx_tagPool_menu_displayMenu_name_nobody.get(net.sf.navigator.taglib.el.DisplayMenuTag.class);
-    _jspx_th_menu_displayMenu_2.setPageContext(_jspx_page_context);
-    _jspx_th_menu_displayMenu_2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_menu_useMenuDisplayer_0);
-    _jspx_th_menu_displayMenu_2.setName("AdminMenu");
-    int _jspx_eval_menu_displayMenu_2 = _jspx_th_menu_displayMenu_2.doStartTag();
-    if (_jspx_th_menu_displayMenu_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_2);
-      return true;
-    }
-    _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_2);
-    return false;
-  }
-
-  private boolean _jspx_meth_menu_displayMenu_3(javax.servlet.jsp.tagext.JspTag _jspx_th_menu_useMenuDisplayer_0, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  menu:displayMenu
-    net.sf.navigator.taglib.el.DisplayMenuTag _jspx_th_menu_displayMenu_3 = (net.sf.navigator.taglib.el.DisplayMenuTag) _jspx_tagPool_menu_displayMenu_name_nobody.get(net.sf.navigator.taglib.el.DisplayMenuTag.class);
-    _jspx_th_menu_displayMenu_3.setPageContext(_jspx_page_context);
-    _jspx_th_menu_displayMenu_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_menu_useMenuDisplayer_0);
-    _jspx_th_menu_displayMenu_3.setName("Logout");
-    int _jspx_eval_menu_displayMenu_3 = _jspx_th_menu_displayMenu_3.doStartTag();
-    if (_jspx_th_menu_displayMenu_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_3);
-      return true;
-    }
-    _jspx_tagPool_menu_displayMenu_name_nobody.reuse(_jspx_th_menu_displayMenu_3);
     return false;
   }
 }

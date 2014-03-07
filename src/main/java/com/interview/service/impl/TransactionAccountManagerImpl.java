@@ -10,23 +10,30 @@ import com.interview.dao.TransactionDao;
 import com.interview.exception.AccountException;
 import com.interview.model.Account;
 import com.interview.model.Transaction;
+import com.interview.sequences.SequenceGenerator;
+import com.interview.service.AccountManager;
 import com.interview.service.TransactionAccountManager;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Leonardo Pavone
  */
-@Service("transactionManager")
+@Service("transactionAccountManager")
 public class TransactionAccountManagerImpl extends GenericManagerImpl<Transaction, Long> implements TransactionAccountManager{
     
+    
     private TransactionDao transactionDao;
-    private AccountDao accountDao;
+    @Autowired
+    @Qualifier("accountManager")
+    private AccountManager accountManager;
 
 
     @Autowired
@@ -35,25 +42,23 @@ public class TransactionAccountManagerImpl extends GenericManagerImpl<Transactio
         this.transactionDao = transactionDao;
     }
 
-    @Autowired
-    public AccountDao getAccountDao() {
-        return accountDao;
+    public AccountManager getAccountManager() {
+        return accountManager;
     }
 
-    public void setAccountDao(AccountDao accountDao) {
-        this.accountDao = accountDao;
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
-
 
     @Override
     public void makeLodgment(Long accountNumber, BigDecimal amount) throws AccountException {
         
-        Account account = accountDao.findByAccountNumber(accountNumber);
+        Account account = accountManager.findByAccountNumber(accountNumber);
         
         account.deposit(amount);
-        accountDao.save(account);
+        accountManager.save(account);
         
-        
+        createTransaction(Transaction.Type.LODGEMENT, amount, accountNumber, null);
     }
 
     /**
@@ -67,15 +72,16 @@ public class TransactionAccountManagerImpl extends GenericManagerImpl<Transactio
     @Override
     public void makeTransfer(Long accountNumberFrom, Long accountNumberTo, BigDecimal amount) throws AccountException {
         
-        Account accountFrom = accountDao.findByAccountNumber(accountNumberFrom);
-        Account accountTo = accountDao.findByAccountNumber(accountNumberTo);
+        Account accountFrom = accountManager.findByAccountNumber(accountNumberFrom);
+        Account accountTo = accountManager.findByAccountNumber(accountNumberTo);
         
         accountFrom.withdraw(amount);
         accountTo.deposit(amount);
         
-        accountDao.save(accountFrom);
-        accountDao.save(accountTo);                
+        accountManager.save(accountFrom);
+        accountManager.save(accountTo);                
         
+        createTransaction(Transaction.Type.TRANSFER, amount, accountNumberFrom, accountNumberTo);
     }
 
     @Override
@@ -88,9 +94,16 @@ public class TransactionAccountManagerImpl extends GenericManagerImpl<Transactio
         
     }
     
-    private Transaction createTransaction(){
-        Transaction transaction = new Transaction(Long.MIN_VALUE, 
-                null, null, BigDecimal.ZERO, Long.MIN_VALUE, Long.MIN_VALUE);
+    private Transaction createTransaction(Transaction.Type type, BigDecimal amount,
+            Long accountFrom, Long accountTo){
+        
+        Transaction transaction = new Transaction(
+                SequenceGenerator.getInstance().getNextValueTransactionID(), 
+                Calendar.getInstance().getTime(),
+                type.getTextType(),
+                amount,
+                accountFrom,
+                accountTo);
         
         return transactionDao.save(transaction);
     }

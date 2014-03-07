@@ -6,13 +6,14 @@
 package com.interview.service;
 
 import com.interview.exception.AccountException;
+import com.interview.model.Account;
 import com.interview.model.Address;
 
 /**
  *
  * @author Leonardo Pavone
  */
-public interface AccountManager {
+public interface AccountManager extends GenericManager<Account, Long> {
     
     /**
      * Create a new account.
@@ -20,11 +21,12 @@ public interface AccountManager {
      * @param name Person's name
      * @param address Person's address
      * @param phoneNumber Person's phone
-     * @param accountType Type of account
+
      * 
      * @throws AccountException 
      */
-    public void createAccount(String name, Address address, String phoneNumber) throws AccountException;
+    public Account createAccount(String name, String address, String phoneNumber) throws AccountException;
     
+    public Account findByAccountNumber(Long AccountNumber) throws AccountException;
     
 }

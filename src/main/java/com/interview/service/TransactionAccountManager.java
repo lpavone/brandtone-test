@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author Leonardo Pavone
  */
-public interface TransactionAccountManager {
+public interface TransactionAccountManager extends GenericManager<Transaction, Long> {
 
     /**
      * Deposit an amount of money into an account.

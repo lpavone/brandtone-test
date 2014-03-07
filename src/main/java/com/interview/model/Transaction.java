@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 import org.hibernate.search.annotations.Indexed;
 
 /**
@@ -29,10 +30,22 @@ import org.hibernate.search.annotations.Indexed;
 })
 public class Transaction extends IdentityEntity{
     
-    public static enum Type { LODGEMENT, TRANSFER };
+    public static enum Type { LODGEMENT("lodgement"), TRANSFER("transfer");
+  
+        private final String textType;  
+  
+        private Type(String textType) {  
+            this.textType = textType;  
+        }  
+  
+        public String getTextType() {  
+            return textType;  
+        }  
+    };  
+       
     private Long transactionID;    
     private Date date;
-    private Type transactionType;
+    private String transactionType;
     private BigDecimal amount;
     private Long accountNumberFrom;
     private Long accountNumberTo;
@@ -40,7 +53,7 @@ public class Transaction extends IdentityEntity{
     public Transaction() {
     }
     
-    public Transaction( Long transactionID, Date date, Type transactionType,
+    public Transaction( Long transactionID, Date date, String transactionType,
             BigDecimal amount, Long accountNumberFrom, Long accountNumberTo){
         
         this.transactionID = transactionID;
@@ -102,11 +115,11 @@ public class Transaction extends IdentityEntity{
     }
 
     @Column(name = "transaction_type")
-    public Type getTransactionType() {
+    public String getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(Type transactionType) {
+    public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
     
@@ -138,8 +151,6 @@ public class Transaction extends IdentityEntity{
     public String toString() {
         return "Transaction{" + "transactionID=" + transactionID + ", date=" + date + ", transactionType=" + transactionType + ", amount=" + amount + ", accountNumberFrom=" + accountNumberFrom + ", accountNumberTo=" + accountNumberTo + '}';
     }
-    
-    
     
     
 }

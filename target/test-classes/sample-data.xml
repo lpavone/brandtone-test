@@ -133,7 +133,7 @@
             <value description="account_number">99898755</value>
             <value description="phone_number">0872349588</value>
             <value description="balance">200</value>
-            <value description="address"></value>
+            <value description="address">7 Sallymount Avenue, Ranelagh, Dublin 6</value>
         </row>
         <row>
             <value description="id">-2</value>
@@ -141,7 +141,7 @@
             <value description="account_number">92344755</value>
             <value description="phone_number">0871111188</value>
             <value description="balance">130000</value>
-            <value description="address"></value>
+            <value description="address">Rathgar Avenue, Rathmines, Dublin 6</value>
         </row>
         <row>
             <value description="id">-3</value>
@@ -149,7 +149,7 @@
             <value description="account_number">99896611</value>
             <value description="phone_number">087232233</value>
             <value description="balance">2200</value>
-            <value description="address"></value>
+            <value description="address">Dame St. Temple Bar, Dublin 2</value>
         </row>
     </table>
     
@@ -158,8 +158,8 @@
         <column>transactionID</column>
         <column>date_</column>
         <column>amount</column>
-        <column>account_number_to</column>
         <column>account_number_from</column>
+        <column>account_number_to</column>
         <column>transaction_type</column>
         <row>
             <value>-1</value>
@@ -168,7 +168,7 @@
             <value>100</value>
             <value>99896611</value>
             <value>92344755</value>
-            <value>1</value>
+            <value>transfer</value>
         </row>
         <row>
             <value>-2</value>
@@ -177,7 +177,25 @@
             <value>200</value>
             <value>99896611</value>
             <value>92344755</value>
-            <value>1</value>
+            <value>transfer</value>
+        </row>
+        <row>
+            <value>-3</value>
+            <value>12235999</value>
+            <value>2013-11-11</value>
+            <value>100</value>
+            <value>99896611</value>
+            <value>92344755</value>
+            <value>transfer</value>
+        </row>
+        <row>
+            <value>-4</value>
+            <value>12535999</value>
+            <value>2013-11-11</value>
+            <value>660</value>
+            <value>99896611</value>
+            <value>0</value>
+            <value>lodgement</value>
         </row>
     </table>
     

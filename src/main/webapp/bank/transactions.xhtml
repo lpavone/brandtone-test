@@ -1,0 +1,92 @@
+<div><html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+       >
+    
+<ui:composition template="/layouts/default.xhtml">
+    <ui:define name="title">Transaction List</ui:define>
+    <ui:param name="menu" value="BankMenu"/>
+
+    <ui:define name="body">
+        <div class="col-sm-10">
+            <h2>Transaction List</h2>
+
+            <h:form id="editUser">
+                <div id="search1" class="text-right">
+                    <span class="col-sm-9">
+                        <h:outputLabel styleClass="control-label" for="q1" value="Account Number"/>
+                        <h:inputText id="q1" size="20" value="#{transactionForm.accountNumber}" styleClass="form-control input-sm"/>
+                    </span>
+                </div>
+                <div id="search2" class="text-right">
+                    <span class="col-sm-9">
+                        <h:outputLabel styleClass="control-label" for="q2" value="Max. Results"/>
+                        <h:inputText id="q2" size="20" value="#{transactionForm.limit}" styleClass="form-control input-sm"/>
+                    </span>
+                </div>
+                <div id="actions" class="btn-group">
+                    <h:commandButton styleClass="btn" value="Search" action="#{transactionForm.search}"  />
+
+    
+                </div>
+                <div id="table" style="margin-top: 100px;">
+                <p:dataTable id="txs" var="transaction" value="#{transactionForm.transactions}" 
+                             paginator="true" rows="25"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                    <p:column style="width: 25%">
+                        <f:facet name="header">
+                            <p:column sortBy="username">
+                                <h:outputText value="ID"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.transactionID}"/>
+                    </p:column>
+                    <p:column style="width: 34%">
+                        <f:facet name="header">
+                            <p:column sortBy="fullName">
+                                <h:outputText value="Date"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.date}"/>
+                    </p:column>
+                    <p:column style="width: 25%">
+                        <f:facet name="header">
+                            <p:column sortBy="email">
+                                <h:outputText value="Type"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.transactionType}"/>
+                    </p:column>
+                    <p:column style="width: 25%">
+                        <f:facet name="header">
+                            <p:column sortBy="email">
+                                <h:outputText value="Account FROM"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.accountNumberFrom}"/>
+                    </p:column>
+                    <p:column style="width: 25%">
+                        <f:facet name="header">
+                            <p:column sortBy="email">
+                                <h:outputText value="Account TO"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.accountNumberTo}"/>
+                    </p:column>
+                    <p:column style="width: 25%">
+                        <f:facet name="header">
+                            <p:column sortBy="email">
+                                <h:outputText value="Amount"/>
+                            </p:column>
+                        </f:facet>
+                        <h:outputText value="#{transaction.amount}"/>
+                    </p:column>
+
+                </p:dataTable>
+                </div>>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html></div>

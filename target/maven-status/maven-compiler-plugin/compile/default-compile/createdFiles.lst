@@ -20,8 +20,8 @@ com/interview/dao/hibernate/HibernateSearchTools.class
 com/interview/model/Role.class
 com/interview/service/impl/PasswordTokenManager.class
 com/interview/service/impl/PasswordTokenManagerImpl.class
-com/interview/webapp/jsp/EscapeXmlELResolver$1.class
 com/interview/service/impl/GenericManagerImpl.class
+com/interview/webapp/jsp/EscapeXmlELResolver$1.class
 com/interview/dao/SearchException.class
 com/interview/webapp/jsp/EscapeXmlELResolver.class
 com/interview/service/impl/RoleManagerImpl.class

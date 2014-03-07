@@ -38,9 +38,10 @@ public class AccountDaoTest extends BaseDaoTestCase {
     @Test
     public void testAddAndRemoveAccount() throws Exception {
         Long newNumber = SequenceGenerator.getInstance().getNextValueAccountNumber();
-        Account account = new Account( newNumber);
+        Account account = new Account();
+        account.setAccountNumber(newNumber);
         account.setName("Merthin Builder");
-        account.setAddress(null);
+        account.setAddress("Temple Bar, Dublin 2");
         account.setPhoneNumber("0887734234");
         account = dao.save( account);
         flush();

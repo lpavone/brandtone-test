@@ -37,7 +37,7 @@ public class TransactionDaoTest extends BaseDaoTestCase {
         Transaction transaction = new Transaction(
                 SequenceGenerator.getInstance().getNextValueTransactionID(), 
                 Calendar.getInstance().getTime(), 
-                Transaction.Type.TRANSFER, 
+                Transaction.Type.TRANSFER.getTextType(), 
                 BigDecimal.valueOf(300L), 
                 92344755L, 
                 99898755L);

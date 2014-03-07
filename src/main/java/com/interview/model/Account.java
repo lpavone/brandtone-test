@@ -32,31 +32,21 @@ public class Account extends IdentityEntity{
     
     private Long accountNumber;
     private String name;    
-    private Address address;
+    private String address;
     private String phoneNumber;
     private BigDecimal balance;
     
     public Account() {
     }
 
-    
-    public Account(Long accountNumber){
-        this.accountNumber = accountNumber;
-        /**
-         * Account is created with $ 0 
-         */
-        this.balance = BigDecimal.ZERO;
-
-    }
-
-    
+        
     @Column(name="account_number", unique = true)
     public Long getAccountNumber() {
         return accountNumber;
     }
 
     public void setAccountNumber(Long accountNumber) {
-        //this.accountNumber = accountNumber;
+        this.accountNumber = accountNumber;
     }
     
     
@@ -69,13 +59,12 @@ public class Account extends IdentityEntity{
         this.name = name;
     }
 
-    @Embedded
-    @IndexedEmbedded
-    public Address getAddress() {
+    @Column(name = "address")
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -94,7 +83,7 @@ public class Account extends IdentityEntity{
     }
     
     public void setBalance(BigDecimal balance){
-        //this.balance = balance;
+        this.balance = balance;
     }
 
     @Override
